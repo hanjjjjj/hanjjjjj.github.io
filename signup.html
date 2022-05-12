@@ -1,13 +1,222 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입 화면 샘플 - Bootstrap</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+    body {
+      min-height: 100vh;
+
+      background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
+      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
+    }
+
+    .input-form {
+      max-width: 680px;
+
+      margin-top: 80px;
+      padding: 32px;
+
+      background: #fff;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+      
+    }
+    * {
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  font-family:sans-serif;
+
+}
+
+body {
+  background-image:#34495e;
+}
+
+.joinForm {
+  position:absolute;
+  width:400px;
+  height:650px;
+  padding: 30px, 20px;
+  background-color:#FFFFFF;
+  text-align:center;
+  top:40%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  border-radius: 15px;
+}
+
+.joinForm h2 {
+  text-align: center;
+  margin: 30px;
+}
+
+.textForm {
+  border-bottom: 2px solid #adadad;
+  margin: 30px;
+  padding: 10px 10px;
+}
+
+
+.id {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.pw {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.name {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.email {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.nickname {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.cellphoneNo {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.btn {
+  position:relative;
+  left:40%;
+  transform: translateX(-50%);
+  margin-bottom: 40px;
+  width:80%;
+  height:40px;
+  background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+  background-position: left;
+  background-size: 200%;
+  color:white;
+  font-weight: bold;
+  border:none;
+  cursor:pointer;
+  transition: 0.4s;
+  display:inline;
+}
+
+.btn:hover {
+  background-position: right;
+}
+</style>
 </head>
 <body>
-    <h2>회원가입페이지</h2>
-    
+<form action="doJoin" method="POST" class="joinForm" onsubmit="DoJoinForm__submit(this); return false;">
+                                                                                               
+    <h2>회원가입</h2>
+    <div class="textForm">
+      <input name="loginId" type="text" id="username" class="id" placeholder="아이디" onkeyup="usernameCheck()">
+      <p id = "checkResult"></p>
+    </div>
+    <div class="textForm">
+      <input name="loginPw" type="password" id="pw1" class="pw" placeholder="비밀번호"></i>
+    </div>
+     <div class="textForm">
+      <input name="loginPwConfirm" type="password" id="pw2" class="pw" placeholder="비밀번호 확인" onblur="pwcheck()"><i id="lock2" i style="color: red"></i></id>
+      <p id ="pw-check-result"></p>
+    </div>
+    <div class="textForm">
+      <input name="name" type="password" class="name" placeholder="이름">
+    </div>
+     <div class="textForm">
+      <input name="email" type="text" class="email" placeholder="이메일">
+    </div>
+    </div>
+    <div class="textForm">
+      <input name="cellphoneNo" type="number" class="cellphoneNo" placeholder="전화번호">
+    </div>
+    <input type="submit" class="btn" value="J O I N"/>
+  </form>
 </body>
-</html>
+<script>
+    function usernameCheck(){
+      const username=document.getElementById("username").value;
+      console.log(`username: ${username}`);
+      console.log(username.length);
+      if(username.length >=5 && username.length <12){
+        checkResult.innerHTML = "정상입니다.";
+        checkResult.style.color="green";
+      }else if(username.length ==0){
+        checkResult.innerHTML = "필수입력정보입니다.";
+        checkResult.style.color = "blue";
+
+      }else 
+          checkResult.InnerHTML = "5~12자 이내로 작성해주세요";
+          checkResult.style.color= "red";
+    }
+    function pwcheck(){
+        const pw1=document.getElementById("pw1").value;
+        const pw2=document.getElementById("pw2").value;
+        const checkResult=document.getElementById("pw-check-result");
+        const lock2 = document.getElementById("lock2");
+        if(pw1==pw2){
+          checkResult.innerHTML = "일치합니다.";
+          checkResult.style.color = "green";
+          lock2.style.color = "green"
+        }else{
+          checkResult.innerHTML = "일치하지 않습니다.";
+          checkResult.style.color = "red";
+          lock2.style.color = "red"
+        }
+       
+    }
+
+</script>
+  
